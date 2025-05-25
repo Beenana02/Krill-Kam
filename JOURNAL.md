@@ -1,9 +1,11 @@
-# Krill Kam Updates
-
+---
 title: "Krill Kam"
 author: "Gabi"
 description: "Raspi-4 camera inspired by the Handycam"
 created_at: "2025-05-16"
+---
+
+# Krill Kam Updates
 
 Howdy wanna see the krill kam grow? 
 

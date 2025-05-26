@@ -10,7 +10,7 @@ created_at: "2025-05-16"
 Howdy wanna see the krill kam grow? 
 
 Check out the updates below! :eyes::shrimp: [^1]
-[^1]: I've spent 4.5 hours total on this project so far 😺
+[^1]: I've spent 7.5 hours total on this project so far 😺
 
 ## May 16th: Sketching
 Got in a rough idea of what I want the Camcorder to look like. It is based off the Sony Handy Cam that I have at home. 
@@ -26,6 +26,13 @@ Today I was just creating the Basic CAD model for the camera. I plan on making a
 ## May 18th: Updating CAD
 
 Didn't do too much today, just focused on updating the CAD model based on how the first CAD printed. Found some issues with clearance and fitting the Raspi in the actual shell. I revamp the inside to have a notch for the raspi and enough room for wires, buttons, proto boards, etc. Anyways, I still need to work on the actual pull out screen part and battery comparment.
-![First CAD](/Screenshots/CaseV1.1.png)
+![Updated Case](/Screenshots/CaseV1.1.png)
 
 > Time Spent (CAD) ~ 1 hour
+
+## May 25th: Arm In CAD
+
+Today I wanted to get the arm part with the hinge modeled in Fusion. This was my first time modeling a hinge and using the join feature in fusion. I went off a hinge desgin based Maker's Muse's snap hinge in his video "Incredibly Handy 3D Printed Hinges!". I got the hinge to work with a bit of struggle at first, but overall I'm happy with the model. I plan on ptinting out the model one more time to figure out sizing but the only thing left is to find where I'll put the power supply in the case.
+![Cam with a arm to hold screen](/Screenshots/CaseWArm.png)
+
+> Time Spent (CAD) ~ 3 hours

@@ -10,13 +10,14 @@ created_at: "2025-05-16"
 Howdy wanna see the krill kam grow? 
 
 Check out the updates below! :eyes::shrimp: [^1]
-[^1]: I've spent 7.5 hours total on this project so far 😺
+[^1]: I've spent 9 hours total on this project so far 😺
 
 ## May 16th: Sketching
 Got in a rough idea of what I want the Camcorder to look like. It is based off the Sony Handy Cam that I have at home. 
 ![Planning Sketch](/Screenshots/Sketch.jpg)
 
 > Time Spent (Sketching) ~ 1 hour
+
 ## May 17th: First CAD & Print
 Today I was just creating the Basic CAD model for the camera. I plan on making a full CAD when I figure out what parts I'll use. I already have a screen and raspi 4 at home so I have some basic dimensions for that.
 ![First CAD](/Screenshots/CaseV1.png)
@@ -36,3 +37,10 @@ Today I wanted to get the arm part with the hinge modeled in Fusion. This was my
 ![Cam with a arm to hold screen](/Screenshots/CaseWArm.png)
 
 > Time Spent (CAD) ~ 3 hours
+
+## May 30th: Battery holder in CAD + some shopping
+
+I modeled a little case on the end of my camera to hold the batteries and some remodeling on the holes for buttons. I'm still not sure what battery type i'll be using but I'm leaning towards a Li-Po with 5v converter and battery charger PCB like the Adafruit PowerBoost 1000. For the shopping, I think I've decided on using the Waveshare 2in capactice touch display module for my main screen and the 0.85 LCD display module for the viewhole screen. I plan on writing some test scripts just to get the camera working, but I won't be albe to test the displays until I get them. 
+![Cam with battery pack](/Screenshots/CaseWBatteryPack.png)
+
+> Time Spent (CAD) ~ 1.5 hours

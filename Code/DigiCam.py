@@ -1,12 +1,20 @@
 import time
-
+import pygame
+import gpiozero
 from picamera2 import Picamera2, Preview
 
-picam2 = Picamera2()
-picam2.start_preview(Preview.QTGL)
+cam = Picamera2()
 
-preview_config = picam2.create_preview_configuration()
-picam2.configure(preview_config)
+turnedOn = True
+input("start")
+cam.start_preview(Preview.QTGL)
+cam.start()
 
-picam2.start()
-time.sleep(100)
+input("stop")
+cam.stop_preview()
+
+#while True:
+   # if(turnedOn):
+  #      cam.start_preview(Preview.QTGL)
+   # else:
+   #     cam.stop_preview()

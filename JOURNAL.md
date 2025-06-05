@@ -48,6 +48,6 @@ I modeled a little case on the end of my camera to hold the batteries and some r
 ## June 4th: Battery holder in CAD + some shopping
 
 Today I coded some more on the camera app script by adding in new features to allow button presses to turn on and off the preview. I also worked a bit on the CAD and finally decided on the screen I will use for the camera. I'm going with a 2.4" TFT display since it fit perfectly inside my arm. 
-![Cam with battery pack](Screenshots\CaseWScreen.png)
+![Cam with battery pack](/Screenshots/CaseWScreen.png)
 
 > Time Spent (CAD+Code) ~ 1 hour

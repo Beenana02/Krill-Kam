@@ -10,7 +10,7 @@ created_at: "2025-05-16"
 Howdy wanna see the krill kam grow? 
 
 Check out the updates below! :eyes::shrimp: [^1]
-[^1]: I've spent 9 hours total on this project so far 😺
+[^1]: I've spent 10 hours total on this project so far 😺
 
 ## May 16th: Sketching
 Got in a rough idea of what I want the Camcorder to look like. It is based off the Sony Handy Cam that I have at home. 
@@ -44,3 +44,10 @@ I modeled a little case on the end of my camera to hold the batteries and some r
 ![Cam with battery pack](/Screenshots/CaseWBatteryPack.png)
 
 > Time Spent (CAD) ~ 1.5 hours
+
+## June 4th: Battery holder in CAD + some shopping
+
+Today I coded some more on the camera app script by adding in new features to allow button presses to turn on and off the preview. I also worked a bit on the CAD and finally decided on the screen I will use for the camera. I'm going with a 2.4" TFT display since it fit perfectly inside my arm. 
+![Cam with battery pack](Screenshots\CaseWScreen.png)
+
+> Time Spent (CAD+Code) ~ 1 hour

@@ -10,7 +10,7 @@ created_at: "2025-05-16"
 Howdy wanna see the krill kam grow? 
 
 Check out the updates below! :eyes::shrimp: [^1]
-[^1]: I've spent 12.5 hours total on this project so far 😺
+[^1]: I've spent 13.5 hours total on this project so far 😺
 
 ## May 16th: Sketching
 Got in a rough idea of what I want the Camcorder to look like. It is based off the Sony Handy Cam that I have at home. 
@@ -28,7 +28,7 @@ Today I was just creating the Basic CAD model for the camera. I plan on making a
 
 ## May 18th: Updating CAD
 
-Didn't do too much today, just focused on updating the CAD model based on how the first CAD printed. Found some issues with clearance and fitting the Raspi in the actual shell. I revamp the inside to have a notch for the raspi and enough room for wires, buttons, proto boards, etc. Anyways, I still need to work on the actual pull out screen part and battery comparment.  
+Didn't do too much today, just focused on updating the CAD model based on how the first CAD printed. Found some issues with clearance and fitting the Raspi in the actual shell. I revamp the inside to have a notch for the raspi and enough room for wires, buttons, proto boards, etc. Anyways, I still need to work on the actual pull out screen part and battery compartment.  
 
 ![Updated Case](/Screenshots/CaseV1.1.png)
 
@@ -36,7 +36,7 @@ Didn't do too much today, just focused on updating the CAD model based on how th
 
 ## May 25th: Arm In CAD
 
-Today I wanted to get the arm part with the hinge modeled in Fusion. This was my first time modeling a hinge and using the join feature in fusion. I went off a hinge desgin based on Maker's Muse's snap hinge in his video "Incredibly Handy 3D Printed Hinges!". I got the hinge to work with a bit of struggle at first, but overall I'm happy with the model. I plan on ptinting out the model one more time to figure out sizing, but the only thing left is to find where I'll put the power supply in the case.  
+Today I wanted to get the arm part with the hinge modeled in Fusion. This was my first time modeling a hinge and using the join feature in fusion. I went off a hinge design based on Maker's Muse's snap hinge in his video "Incredibly Handy 3D Printed Hinges!". I got the hinge to work with a bit of struggle at first, but overall I'm happy with the model. I plan on printing out the model one more time to figure out sizing, but the only thing left is to find where I'll put the power supply in the case.  
 
 ![Cam with a arm to hold screen](/Screenshots/CaseWArm.png)
 
@@ -44,7 +44,7 @@ Today I wanted to get the arm part with the hinge modeled in Fusion. This was my
 
 ## May 30th: Battery holder in CAD + some shopping
 
-I modeled a little case on the end of my camera to hold the batteries and some remodeling on the holes for buttons. I'm still not sure what battery type i'll be using but I'm leaning towards a Li-Po with 5v converter and battery charger PCB like the Adafruit PowerBoost 1000. For the shopping, I think I've decided on using the Waveshare 2in capactice touch display module for my main screen and the 0.85 LCD display module for the viewhole screen. I plan on writing some test scripts just to get the camera working, but I won't be able to test the displays until I get them.  
+I modeled a little case on the end of my camera to hold the batteries and some remodeling on the holes for buttons. I'm still not sure what battery type i'll be using but I'm leaning towards a Li-Po with 5v converter and battery charger PCB like the Adafruit PowerBoost 1000. For the shopping, I think I've decided on using the Waveshare 2in touch display module for my main screen and the 0.85 LCD display module for the view hole screen. I plan on writing some test scripts just to get the camera working, but I won't be able to test the displays until I get them.  
  
 ![Cam with battery pack](/Screenshots/CaseWBatteryPack.png)
 
@@ -67,3 +67,23 @@ Also make sure to check out the [video](Screenshots/KrillKamCaseV2.mp4) in the s
 ![Krill Kam Colored](Screenshots/V2Colored.png)
 
 > Time Spent (CAD) ~ 2.5 hours
+
+## June 8th: Finished BOM
+
+Today I began printing out the parts for krill kam case. I also finished the BOM of what items I need to buy. The total came to around $110 without shipping, but I'm sure with coupons and deals I will be able to get that price down. Also I settled on getting the battery off of Amazon even though it was pricey just because of shipping reasons. Anyways below is a photo of the pieces I have printed out so fall (arm, battery shell, and USB panel cover) more is printing now!   
+
+![arm, battery shell, and USB panel cover](Screenshots/printedParts1.png)
+
+> Time Spent (CAD) ~ 0.5 hours
+
+## June 9th: Updated Hinge design
+
+Today I printed out the base and notice 3 problems with clearances.  
+
+1. I couldn't get the battery shell to fit in smoothly, so I added in some extra clearance to the hole on the back of the base.
+2. The USB panel cover didn't fit in, so I added more clearances.
+3. Lastly, the arm couldn't be attached to the base, so I got rid of the notch in the center and will print that part on its own and glue it back in.    
+
+![fixed hinge](Screenshots/BaseV2.1.png)
+
+> Time Spent (CAD) ~ 0.5 hours

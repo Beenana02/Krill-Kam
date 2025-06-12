@@ -10,7 +10,7 @@ created_at: "2025-05-16"
 Howdy wanna see the krill kam grow? 
 
 Check out the updates below! :eyes::shrimp: [^1]
-[^1]: I've spent 13.5 hours total on this project so far 😺
+[^1]: I've spent 14.5 hours total on this project so far 😺
 
 ## May 16th: Sketching
 Got in a rough idea of what I want the Camcorder to look like. It is based off the Sony Handy Cam that I have at home. 
@@ -87,3 +87,11 @@ Today I printed out the base and notice 3 problems with clearances.
 ![fixed hinge](Screenshots/BaseV2.1.png)
 
 > Time Spent (CAD) ~ 0.5 hours
+
+## June 11th: Printed case!
+
+I fixed the problems with the base and reprinted the parts. I now have a full shell of the krill kam! I also did a bit of work on the gui code, but still working on layout stuff.  
+
+![Case](Screenshots/CasePrinted.png)
+
+> Time Spent ~ 1 hour

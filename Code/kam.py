@@ -12,7 +12,8 @@ root.minsize(320,240)
 root.maxsize(1280,960)
 root.columnconfigure(0,weight =1, uniform='a')
 root.columnconfigure(1,weight =2, uniform='a')
-root.rowconfigure((0,1),weight =1, uniform='a')
+root.rowconfigure((0),weight =1, uniform='a')
+root.rowconfigure((1),weight =2, uniform='a')
 
 
 #create transparent background
@@ -38,9 +39,21 @@ def fill_image(event,imaged,ratio):
                              anchor ='center',
                              image=newImage_tk)
 
-#fit to canvas while keeping aspect ratio
-def fit_image(event, canvasP, size):
-    pass
+#fits to camera preview to canvas while keeping aspect ratio
+def fit_image(image, width, height):
+
+    old_width, old_height = image.size
+    aspectRatio = old_width/old_height
+    currentRatio=width/height
+    if(currentRatio>aspectRatio):
+        nHeight= height
+        nWidth= int(nHeight*aspectRatio)
+    else:
+        nWidth=width
+        nHeight=int(nWidth/aspectRatio)
+    resizedImage= image.resize((nWidth,nHeight),Image.LANCZOS)
+    return ImageTk.PhotoImage(resizedImage)
+
 
 #camera stuff
 def show_frame():
@@ -49,14 +62,20 @@ def show_frame():
    
    if ret:
        # cv2 uses `BGR` but `GUI` needs `RGB`
-       frame = cv2.resize(frame,(200,150))
-       frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+       
+       cv2frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
        # convert to PIL image
-       img = Image.fromarray(frame)
+       img = Image.fromarray(cv2frame)
+
+       #resize window
+
+       widthS=int(previewArea.winfo_width())
+       heightS=int(previewArea.winfo_height())
+       resizedImage = fit_image(img,widthS,heightS)
 
        # convert to Tkinter image
-       photo = ImageTk.PhotoImage(image=img)
+       photo = resizedImage
        
        # solution for bug in `PhotoImage`
        cameraLabel.photo = photo
@@ -98,23 +117,22 @@ backgrounds.bind('<Configure>', lambda event: fill_image(event, blueBack,blueRat
 backgrounds.grid(column=0, row=0, columnspan=root.grid_size()[0],rowspan=root.grid_size()[1], sticky='nsew')
 
 #camera/photo sections
-previewArea=tk.Frame(root, bg='black')
-previewFrame= tk.Frame(previewArea, bg='black', height=10,width=10)
-previewArea.grid(column=1,row=0, rowspan=root.grid_size()[1], sticky='nesw')
-previewFrame.pack(anchor='center')
+previewFrame=tk.Frame(root)
+previewFrame.grid(column=1,row=0, rowspan=root.grid_size()[1], sticky='nesw')
 
+previewArea=tk.Frame(previewFrame, bg='black')
+previewArea.pack(fill='both',expand=True)
+previewArea.update()
 
 #set up camera preview gotten from stack overflow for basics, plan to update later
 cap = cv2.VideoCapture(0)
 image_id = None
-#cameraCanvas = tk.Canvas(previewFrame)
-cameraLabel= ttk.Label(previewFrame)
-#cameraCanvas.pack()
+cameraLabel= ttk.Label(previewArea)
 cameraLabel.pack(fill='both', expand=True)
 
 #Clock feature
-localTime= ttk.Label(root, background=None, foreground='black', font=('Courier New', 10))
-localTime.grid(column=1,row=0,sticky='ne')
+localTime= ttk.Label(previewFrame, background=None, foreground='black', font=('Courier New', 10))
+localTime.pack(fill='x',anchor='ne')
 time_now()
 
 #Live Camera feed buttons
@@ -139,8 +157,8 @@ for index, button in enumerate(camera_buttons):
     button.pack(fill='both',expand=True,padx=1,pady=1)
     #button.config(background = 'red', foreground='black')
 
-krillCanvas= ttk.Canvas(root,background='blue')
-krillCanvas.grid(column=0,row=1,sticky='nesw')
+#krillCanvas= ttk.Canvas(root,background='blue')
+#krillCanvas.grid(column=0,row=1,sticky='nesw')
 
 show_frame()
 root.mainloop()

@@ -10,7 +10,7 @@ created_at: "2025-05-16"
 Howdy wanna see the krill kam grow? 
 
 Check out the updates below! :eyes::shrimp: [^1]
-[^1]: I've spent 14.5 hours total on this project so far 😺
+[^1]: I've spent 17.5 hours total on this project so far 😺
 
 ## May 16th: Sketching
 Got in a rough idea of what I want the Camcorder to look like. It is based off the Sony Handy Cam that I have at home. 
@@ -95,3 +95,11 @@ I fixed the problems with the base and reprinted the parts. I now have a full sh
 ![Case](Screenshots/CasePrinted.png)
 
 > Time Spent ~ 1 hour
+
+## June 12th: GUI with live camera feed
+
+Today I got a background on my camera app, along with a live feed of the camera using OpenCV. I watched some of clear code's "The ultimate introduction to modern GUIs in Python [ with tkinter ]" to get the background image working and general knowledge on Tkinter. I also used Jake's Science Shop's "Adding a Webcam Stream to our Python - Tkinter Drone Controller | Part 2: GUI Video Stream" video to get OpenCV working with my app. Now I just need to fix the scaling issues with the camera and add in the rest of app features. I want a photo viewing mode, camera controls like zoom and focus, accurate time/date, and fun fish themed features! For now I've been using frutiger aero photos as my background, but I plan to shift into creating my own icons and backgrounds using pixel art!   
+
+![camera app basic](Screenshots/CodingGUI.png)
+
+> Time Spent ~ 3 hours

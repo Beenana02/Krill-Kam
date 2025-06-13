@@ -1,11 +1,11 @@
 import tkinter as tk
 from tkinter import ttk
-from tkinter import *
 import ttkbootstrap as ttk
 import cv2
 from PIL import Image, ImageTk
 from time import strftime
 
+# --- functions --- #
 #fills images
 def fill_image(event,imaged,ratio):
     global newImage_tk
@@ -25,13 +25,39 @@ def fill_image(event,imaged,ratio):
                              anchor ='center',
                              image=newImage_tk)
 
+#camera stuff
+def show_frame():
+   # get frame
+   ret, frame = cap.read()
+   
+   if ret:
+       # cv2 uses `BGR` but `GUI` needs `RGB`
+       frame = cv2.resize(frame,(previewFrame.winfo_width(),previewFrame.winfo_height()))
+       frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+       # convert to PIL image
+       img = Image.fromarray(frame)
+
+       # convert to Tkinter image
+       photo = ImageTk.PhotoImage(image=img)
+       
+       # solution for bug in `PhotoImage`
+       cameraLabel.photo = photo
+       
+       # replace image in label
+       cameraLabel.configure(image=photo)  
+   
+   # run again after 20ms (0.02s)
+   root.after(20, show_frame)
+
 root = ttk.Window()
 root.title("Krill Kam!")
 root.geometry('320x240')
 root.minsize(320,240)
 root.maxsize(1280,960)
 root.columnconfigure(0,weight =1, uniform='a')
-root.rowconfigure((0),weight =1, uniform='a')
+root.columnconfigure(1,weight =2, uniform='a')
+root.rowconfigure(0,weight =1, uniform='a')
 
 #center app
 root.update_idletasks()
@@ -54,6 +80,23 @@ blueImage=ImageTk.PhotoImage(blueBack)
 backgrounds= tk.Canvas(root,background='black', bd=0, highlightthickness=0, relief='ridge')
 
 backgrounds.bind('<Configure>', lambda event: fill_image(event, blueBack,blueRatio))
-backgrounds.grid(column=0, row=0, sticky='nsew')
+backgrounds.grid(column=0, row=0, columnspan=root.grid_size()[0],rowspan=root.grid_size()[1], sticky='nsew')
 
+#camera/photo sections
+previewFrame= tk.Frame(root, bg='black')
+previewFrame.grid(column=1,row=0,sticky='nesw')
+
+
+#set up camera preview gotten from stack overflow for basics, plan to update later
+cap = cv2.VideoCapture(0)
+image_id = None
+#cameraCanvas = tk.Canvas(previewFrame)
+cameraLabel= ttk.Label(previewFrame)
+#cameraCanvas.pack()
+cameraLabel.pack(fill='both', expand=True)
+
+
+
+show_frame()
 root.mainloop()
+cap.release()

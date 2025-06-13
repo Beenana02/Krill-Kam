@@ -5,6 +5,19 @@ import cv2
 from PIL import Image, ImageTk
 from time import strftime
 
+root = ttk.Window()
+root.title("Krill Kam!")
+root.geometry('320x240')
+root.minsize(320,240)
+root.maxsize(1280,960)
+root.columnconfigure(0,weight =1, uniform='a')
+root.columnconfigure(1,weight =2, uniform='a')
+root.rowconfigure((0,1),weight =1, uniform='a')
+
+
+#create transparent background
+
+
 # --- functions --- #
 #fills images
 def fill_image(event,imaged,ratio):
@@ -25,6 +38,10 @@ def fill_image(event,imaged,ratio):
                              anchor ='center',
                              image=newImage_tk)
 
+#fit to canvas while keeping aspect ratio
+def fit_image(event, canvasP, size):
+    pass
+
 #camera stuff
 def show_frame():
    # get frame
@@ -32,7 +49,7 @@ def show_frame():
    
    if ret:
        # cv2 uses `BGR` but `GUI` needs `RGB`
-       frame = cv2.resize(frame,(previewFrame.winfo_width(),previewFrame.winfo_height()))
+       frame = cv2.resize(frame,(200,150))
        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
        # convert to PIL image
@@ -50,14 +67,12 @@ def show_frame():
    # run again after 20ms (0.02s)
    root.after(20, show_frame)
 
-root = ttk.Window()
-root.title("Krill Kam!")
-root.geometry('320x240')
-root.minsize(320,240)
-root.maxsize(1280,960)
-root.columnconfigure(0,weight =1, uniform='a')
-root.columnconfigure(1,weight =2, uniform='a')
-root.rowconfigure(0,weight =1, uniform='a')
+#Gets local time
+def time_now():
+    currentTime= strftime('%D %I:%M:%S %p ')
+    localTime.config(text=currentTime)
+    localTime.after(1500, time_now)
+
 
 #center app
 root.update_idletasks()
@@ -83,8 +98,10 @@ backgrounds.bind('<Configure>', lambda event: fill_image(event, blueBack,blueRat
 backgrounds.grid(column=0, row=0, columnspan=root.grid_size()[0],rowspan=root.grid_size()[1], sticky='nsew')
 
 #camera/photo sections
-previewFrame= tk.Frame(root, bg='black')
-previewFrame.grid(column=1,row=0,sticky='nesw')
+previewArea=tk.Frame(root, bg='black')
+previewFrame= tk.Frame(previewArea, bg='black', height=10,width=10)
+previewArea.grid(column=1,row=0, rowspan=root.grid_size()[1], sticky='nesw')
+previewFrame.pack(anchor='center')
 
 
 #set up camera preview gotten from stack overflow for basics, plan to update later
@@ -95,7 +112,35 @@ cameraLabel= ttk.Label(previewFrame)
 #cameraCanvas.pack()
 cameraLabel.pack(fill='both', expand=True)
 
+#Clock feature
+localTime= ttk.Label(root, background=None, foreground='black', font=('Courier New', 10))
+localTime.grid(column=1,row=0,sticky='ne')
+time_now()
 
+#Live Camera feed buttons
+camera_buttons=[]
+buttonFrame = tk.Frame(root)
+buttonFrame.grid(column=0,row=0,sticky='nesw')
+
+capture=ttk.Button(buttonFrame, text='Capture')
+camera_buttons.append(capture)
+
+record=ttk.Button(buttonFrame, text='Record')
+camera_buttons.append(record)
+
+reviewMode=ttk.Button(buttonFrame, text='Review')
+camera_buttons.append(reviewMode)
+
+settings=ttk.Button(buttonFrame, text='settings')
+camera_buttons.append(settings)
+
+
+for index, button in enumerate(camera_buttons):
+    button.pack(fill='both',expand=True,padx=1,pady=1)
+    #button.config(background = 'red', foreground='black')
+
+krillCanvas= ttk.Canvas(root,background='blue')
+krillCanvas.grid(column=0,row=1,sticky='nesw')
 
 show_frame()
 root.mainloop()

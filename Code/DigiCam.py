@@ -4,8 +4,6 @@ from gpiozero import Button
 from picamera2 import Picamera2, Preview
 from picamera2.encoders import H264Encoder
 
-
-
 cam = Picamera2()
 previewB = Button(14)
 photoB = Button(15)
@@ -35,9 +33,6 @@ def video_capture():
         cam.start_recording(encoder, '/home/krill/camera/'+currentTime+'.h264')
     elif(recording == False):
         cam.stop_recording()
-
-
-
 
 while True:
     if previewB.is_pressed:

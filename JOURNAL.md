@@ -10,7 +10,7 @@ created_at: "2025-05-16"
 Howdy wanna see the krill kam grow? 
 
 Check out the updates below! :eyes::shrimp: [^1]
-[^1]: I've spent 17.5 hours total on this project so far 😺
+[^1]: I've spent 20.5 hours total on this project so far 😺
 
 ## May 16th: Sketching
 Got in a rough idea of what I want the Camcorder to look like. It is based off the Sony Handy Cam that I have at home. 
@@ -101,5 +101,13 @@ I fixed the problems with the base and reprinted the parts. I now have a full sh
 Today I got a background on my camera app, along with a live feed of the camera using OpenCV. I watched some of clear code's "The ultimate introduction to modern GUIs in Python [ with tkinter ]" to get the background image working and general knowledge on Tkinter. I also used Jake's Science Shop's "Adding a Webcam Stream to our Python - Tkinter Drone Controller | Part 2: GUI Video Stream" video to get OpenCV working with my app. Now I just need to fix the scaling issues with the camera and add in the rest of app features. I want a photo viewing mode, camera controls like zoom and focus, accurate time/date, and fun fish themed features! For now I've been using frutiger aero photos as my background, but I plan to shift into creating my own icons and backgrounds using pixel art!   
 
 ![camera app basic](Screenshots/CodingGUI.png)
+
+> Time Spent ~ 3 hours
+
+## June 13th: Fixed camera feed and read me
+
+I spent all of today trying to fix the camera feed so that the camera aspect ratio stays the same no matter the screen size. I got it to work using some ratio of camera height to width and comparing it with the window height and width. The code I learned yesterday when creating a background that resizes with app was what I based off today's code. I also added place holder buttons as well. Lastly I got my readme polished and I think I'm ready to submit for my grant. Hopefully I can get the screen part soon(it will help me a lot with creating the GUI).  
+
+![camera app basic](Screenshots/UpdatedGUI.png)
 
 > Time Spent ~ 3 hours

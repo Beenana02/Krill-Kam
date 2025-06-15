@@ -1,23 +1,21 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter import messagebox
 import ttkbootstrap as ttk
 import cv2
 from PIL import Image, ImageTk
 from time import strftime
 
-root = ttk.Window()
+root = ttk.Window(themename='morph')
 root.title("Krill Kam!")
 root.geometry('320x240')
 root.minsize(320,240)
 root.maxsize(1280,960)
 root.columnconfigure(0,weight =1, uniform='a')
-root.columnconfigure(1,weight =2, uniform='a')
+root.columnconfigure(1,weight =5, uniform='a')
 root.rowconfigure((0),weight =1, uniform='a')
 root.rowconfigure((1),weight =2, uniform='a')
-
-
-#create transparent background
-
+root.rowconfigure((2),weight =1, uniform='a')
 
 # --- functions --- #
 #fills images
@@ -54,7 +52,6 @@ def fit_image(image, width, height):
     resizedImage= image.resize((nWidth,nHeight),Image.LANCZOS)
     return ImageTk.PhotoImage(resizedImage)
 
-
 #camera stuff
 def show_frame():
    # get frame
@@ -86,25 +83,71 @@ def show_frame():
    # run again after 20ms (0.02s)
    root.after(20, show_frame)
 
+#Gets fps of camera
+def fps_counter():
+    fps = cap.get(cv2.CAP_PROP_FPS)
+    fpsLabel.config(text='FPS: '+str(fps))
+    fpsLabel.after(2000, fps_counter)
+
 #Gets local time
 def time_now():
     currentTime= strftime('%D %I:%M:%S %p ')
     localTime.config(text=currentTime)
     localTime.after(1500, time_now)
 
+#Power down camera
+def power_off(mode):
+    powerWindow = tk.Toplevel()
 
-#center app
-root.update_idletasks()
-screen_width=root.winfo_screenwidth()
-screen_height=root.winfo_screenheight()
-width = root.winfo_width()
-height = root.winfo_height()
-x = (screen_width//2 - (width//2))
-y = (screen_height//2 - (height//2) )
-root.geometry(f"{width}x{height}+{x}+{y}")
+    powerWindow.title("power off")
+    powerWindow.geometry('320x240')
+    powerWindow.grid_columnconfigure((0,1),weight=1,uniform='a')
+    powerWindow.rowconfigure((0,1),weight=1,uniform='a')
+    centerWindows(powerWindow)
 
-#root.overrideredirect(True)
-root.bind('<Escape>',lambda event: root.quit())
+    yesB=ttk.Button(powerWindow,text='Yes')
+    yesB.grid(column=0,row=1, sticky='sew')
+    noB=ttk.Button(powerWindow,text='No', command=lambda: powerWindow.destroy())
+    noB.grid(column=1,row=1, sticky='sew')
+
+    #if powered off from screen it will display a popup message first then shutdown
+    if(mode=='screen'):
+        pass
+            
+
+    #if powered down from switch button it will complete a safe shutdown
+
+#Review photos window
+def create_photo_window():
+    #basic canvas
+    photo_window = tk.Toplevel()
+    photo_window.title("Photo Reviewer")
+    photo_window.geometry('320x240')
+    photo_window.grid_columnconfigure((0,1),weight=1,uniform='a')
+    photo_window.rowconfigure((0,1),weight=1,uniform='a')
+    centerWindows(photo_window)
+
+    returnB = ttk.Button(photo_window,text='EXIT', command= lambda: photo_window.destroy())
+    returnB.grid(column=0,row=0,sticky='wn')
+
+
+imageFolder="/GUIimages"
+
+
+#center app on launch
+def centerWindows(window):
+    window.update_idletasks()
+    screen_width=window.winfo_screenwidth()
+    screen_height=window.winfo_screenheight()
+    width = window.winfo_width()
+    height = window.winfo_height()
+    x = (screen_width//2 - (width//2))
+    y = (screen_height//2 - (height//2) )
+    window.geometry(f"{width}x{height}+{x}+{y}")
+    window.overrideredirect(True)
+    window.bind('<Escape>',lambda event: root.destroy())
+centerWindows(root)
+
 
 #set background
 blueBack=Image.open('GUIimages/blue-background.jpeg')
@@ -116,12 +159,16 @@ backgrounds= tk.Canvas(root,background='black', bd=0, highlightthickness=0, reli
 backgrounds.bind('<Configure>', lambda event: fill_image(event, blueBack,blueRatio))
 backgrounds.grid(column=0, row=0, columnspan=root.grid_size()[0],rowspan=root.grid_size()[1], sticky='nsew')
 
-#camera/photo sections
+#camera/photo sections (holds time, live preview, etc)
 previewFrame=tk.Frame(root)
 previewFrame.grid(column=1,row=0, rowspan=root.grid_size()[1], sticky='nesw')
+previewFrame.columnconfigure((0,1,2),weight=1, uniform='a')
+previewFrame.rowconfigure((0,2),weight=1, uniform='a')
+previewFrame.rowconfigure(1,weight=4,uniform='a')
 
+#Actual area for camera and photo preview to go
 previewArea=tk.Frame(previewFrame, bg='black')
-previewArea.pack(fill='both',expand=True)
+previewArea.grid(column=0,row=1, columnspan=previewFrame.grid_size()[0], rowspan=previewFrame.grid_size()[1], sticky='nesw')
 previewArea.update()
 
 #set up camera preview gotten from stack overflow for basics, plan to update later
@@ -131,31 +178,40 @@ cameraLabel= ttk.Label(previewArea)
 cameraLabel.pack(fill='both', expand=True)
 
 #Clock feature
-localTime= ttk.Label(previewFrame, background=None, foreground='black', font=('Courier New', 10))
-localTime.pack(fill='x',anchor='ne')
+localTime= ttk.Label(previewFrame, background=None, foreground='black', font=('Courier New', 7))
+localTime.grid(column=0,row=0,columnspan=previewFrame.grid_size()[0],sticky='nw')
 time_now()
+
+#Camera info text
+fpsLabel = ttk.Label(previewFrame, foreground='black', font=('Courier New', 7))
+fpsLabel.grid(column=0,row=2, sticky='ws')
+fps_counter()
 
 #Live Camera feed buttons
 camera_buttons=[]
 buttonFrame = tk.Frame(root)
-buttonFrame.grid(column=0,row=0,sticky='nesw')
+buttonFrame.grid(column=0,row=0, rowspan=2, sticky='nesw')
 
 capture=ttk.Button(buttonFrame, text='Capture')
 camera_buttons.append(capture)
 
-record=ttk.Button(buttonFrame, text='Record')
+recPicStart= tk.PhotoImage('GUIimages/Icons/recordStart.png')
+record=ttk.Button(buttonFrame,image=recPicStart )
 camera_buttons.append(record)
 
-reviewMode=ttk.Button(buttonFrame, text='Review')
+reviewMode=ttk.Button(buttonFrame, text='Review', command=create_photo_window)
 camera_buttons.append(reviewMode)
 
 settings=ttk.Button(buttonFrame, text='settings')
 camera_buttons.append(settings)
 
+#Power button
+powerOff= ttk.Button(root, text="Power", command=lambda:power_off('screen'))
+powerOff.grid(column=0, row=2,sticky='ews')
+
 
 for index, button in enumerate(camera_buttons):
     button.pack(fill='both',expand=True,padx=1,pady=1)
-    #button.config(background = 'red', foreground='black')
 
 #krillCanvas= ttk.Canvas(root,background='blue')
 #krillCanvas.grid(column=0,row=1,sticky='nesw')

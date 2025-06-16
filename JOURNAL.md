@@ -10,7 +10,7 @@ created_at: "2025-05-16"
 Howdy wanna see the krill kam grow? 
 
 Check out the updates below! :eyes::shrimp: [^1]
-[^1]: I've spent 20.5 hours total on this project so far 😺
+[^1]: I've spent 22.5 hours total on this project so far 😺
 
 ## May 16th: Sketching
 Got in a rough idea of what I want the Camcorder to look like. It is based off the Sony Handy Cam that I have at home. 
@@ -111,3 +111,11 @@ I spent all of today trying to fix the camera feed so that the camera aspect rat
 ![camera app basic](Screenshots/UpdatedGUI.png)
 
 > Time Spent ~ 3 hours
+
+## June 15th: new windows on GUI
+
+Today I used the top level widget to create 2 new windows for the app. I now have a window for powering off the camera and a window to review photos. The window can't quite cycle through photos yet, but I am working on that at the moment. I think i'll try the same idea as I saw in geeks for geeks tutorial on creating a image viewer app with tkinter.    
+
+![](Screenshots/reviewphotosV1.png)
+
+> Time Spent ~ 2 hours

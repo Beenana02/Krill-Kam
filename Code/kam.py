@@ -5,6 +5,7 @@ import ttkbootstrap as ttk
 import cv2
 from PIL import Image, ImageTk
 from time import strftime
+import os
 
 root = ttk.Window(themename='morph')
 root.title("Krill Kam!")
@@ -119,6 +120,7 @@ def power_off(mode):
 
 #Review photos window
 def create_photo_window():
+    global photoLabel
     #basic canvas
     photo_window = tk.Toplevel()
     photo_window.title("Photo Reviewer")
@@ -127,11 +129,38 @@ def create_photo_window():
     photo_window.rowconfigure((0,1),weight=1,uniform='a')
     centerWindows(photo_window)
 
+    #photo canvas
+    photoLabel= ttk.Label(photo_window, text='place holder', background='black', anchor= 'center')
+    photoLabel.grid(column=0,row=0,columnspan=photo_window.grid_size()[0], rowspan=photo_window.grid_size()[1], sticky='nsew')
+
+    title = ttk.Label(photo_window,text='Review your images!',anchor='center')
+    title.grid(column=0,row=1, columnspan=photo_window.grid_size()[0], sticky='sew')
+    #forward/ backward options
+    prevK = ttk.Button(photo_window,text='Prev')
+    prevK.grid(column=0,row=1,sticky='sw')
+    nextK = ttk.Button(photo_window,text='Next')
+    nextK.grid(column=1,row=1,sticky='se')
+    #photo counter + exit button
+    counter = ttk.Label(photo_window, text=str(imageCounter)+'/'+str(len(photosPath)), anchor='center')
+    counter.grid(column=1,row=1,sticky='ne')
     returnB = ttk.Button(photo_window,text='EXIT', command= lambda: photo_window.destroy())
     returnB.grid(column=0,row=0,sticky='wn')
+    
+def display_image(photoNum):
+    if(photoNum< len(photosPath)):
+        loaded = Image.open(photosPath[photoNum])
+        loadedPhoto = ImageTk.PhotoImage(loaded)
+        #print(loadedPhoto)
+        photoLabel.config(text= None, image=loadedPhoto)
+        photoLabel.image = loadedPhoto
 
+imageFolder="C:/Users/Gabi/Documents/KrillKam/Krill-Kam-/Screenshots"
+photosPath = []
+imageCounter = 0
 
-imageFolder="/GUIimages"
+for photo in os.listdir(imageFolder):
+    photoPath = os.path.join(imageFolder, photo)
+    photosPath.append(photoPath)
 
 
 #center app on launch
@@ -144,6 +173,7 @@ def centerWindows(window):
     x = (screen_width//2 - (width//2))
     y = (screen_height//2 - (height//2) )
     window.geometry(f"{width}x{height}+{x}+{y}")
+    #window.attributes('-topmost', True)
     window.overrideredirect(True)
     window.bind('<Escape>',lambda event: root.destroy())
 centerWindows(root)
@@ -215,6 +245,11 @@ for index, button in enumerate(camera_buttons):
 
 #krillCanvas= ttk.Canvas(root,background='blue')
 #krillCanvas.grid(column=0,row=1,sticky='nesw')
+
+#testing windows
+create_photo_window()
+display_image(0)
+#power_off()
 
 show_frame()
 root.mainloop()

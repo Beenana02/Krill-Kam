@@ -121,6 +121,10 @@ def power_off(mode):
 #Review photos window
 def create_photo_window():
     global photoLabel
+    global prevK
+    global nextK
+    global counter
+    global photo_window
     #basic canvas
     photo_window = tk.Toplevel()
     photo_window.title("Photo Reviewer")
@@ -131,37 +135,69 @@ def create_photo_window():
 
     #photo canvas
     photoLabel= ttk.Label(photo_window, text='place holder', background='black', anchor= 'center')
-    photoLabel.grid(column=0,row=0,columnspan=photo_window.grid_size()[0], rowspan=photo_window.grid_size()[1], sticky='nsew')
-
+    photoLabel.grid(column=0,row=0,columnspan=photo_window.grid_size()[0], rowspan=photo_window.grid_size()[1])
+    
     title = ttk.Label(photo_window,text='Review your images!',anchor='center')
     title.grid(column=0,row=1, columnspan=photo_window.grid_size()[0], sticky='sew')
     #forward/ backward options
-    prevK = ttk.Button(photo_window,text='Prev')
+    prevK = ttk.Button(photo_window,text='Prev', command= last_photo)
     prevK.grid(column=0,row=1,sticky='sw')
-    nextK = ttk.Button(photo_window,text='Next')
+    nextK = ttk.Button(photo_window,text='Next', command= next_photo)
     nextK.grid(column=1,row=1,sticky='se')
     #photo counter + exit button
     counter = ttk.Label(photo_window, text=str(imageCounter)+'/'+str(len(photosPath)), anchor='center')
     counter.grid(column=1,row=1,sticky='ne')
     returnB = ttk.Button(photo_window,text='EXIT', command= lambda: photo_window.destroy())
     returnB.grid(column=0,row=0,sticky='wn')
+
+    display_image(imageCounter)
     
 def display_image(photoNum):
+    global photo_window
+    global counter
     if(photoNum< len(photosPath)):
         loaded = Image.open(photosPath[photoNum])
-        loadedPhoto = ImageTk.PhotoImage(loaded)
-        #print(loadedPhoto)
-        photoLabel.config(text= None, image=loadedPhoto)
-        photoLabel.image = loadedPhoto
+        widthS=int(photo_window.winfo_width())
+        heightS=int(photo_window.winfo_height())-int(counter.winfo_height())
+        newLoadedPhoto= fit_image(loaded, widthS, widthS)
+        photoLabel.config(text= None, image=newLoadedPhoto)
+        photoLabel.image = newLoadedPhoto
 
-imageFolder="C:/Users/Gabi/Documents/KrillKam/Krill-Kam-/Screenshots"
-photosPath = []
+def next_photo():
+    global imageCounter
+    global counter
+    if(0<= imageCounter < len(photosPath)):
+        imageCounter += 1
+        display_image(imageCounter)
+        counter.config(text=str(imageCounter)+'/'+str(len(photosPath)))
+    else:
+        print('no more photos')
+    print(imageCounter)
+    
+def last_photo():
+    global imageCounter
+    global counter
+    if(0< imageCounter <= len(photosPath)):
+        imageCounter -= 1
+        display_image(imageCounter)
+        counter.config(text=str(imageCounter)+'/'+str(len(photosPath)))
+    else:
+        print('no more photos')
+    print(imageCounter)
+
+#detects which photo the app is viewing
 imageCounter = 0
 
-for photo in os.listdir(imageFolder):
-    photoPath = os.path.join(imageFolder, photo)
-    photosPath.append(photoPath)
-
+# get photos from certain folder
+imageFolder="C:/Users/Gabi/Documents/KrillKam/Krill-Kam-/Screenshots"
+photosPath = []
+def get_photos(folder):
+    for photo in os.listdir(folder):
+        photo_end= os.path.splitext(photo)[1]
+        if(photo_end.lower() in {'.png','.jpeg','.jpg'}):
+            photoPath = os.path.join(folder, photo)
+            photosPath.append(photoPath)
+get_photos(imageFolder)
 
 #center app on launch
 def centerWindows(window):
@@ -248,7 +284,6 @@ for index, button in enumerate(camera_buttons):
 
 #testing windows
 create_photo_window()
-display_image(0)
 #power_off()
 
 show_frame()

@@ -10,7 +10,7 @@ created_at: "2025-05-16"
 Howdy wanna see the krill kam grow? 
 
 Check out the updates below! :eyes::shrimp: [^1]
-[^1]: I've spent 22.5 hours total on this project so far 😺
+[^1]: I've spent 24 hours total on this project so far 😺
 
 ## May 16th: Sketching
 Got in a rough idea of what I want the Camcorder to look like. It is based off the Sony Handy Cam that I have at home. 
@@ -119,3 +119,19 @@ Today I used the top level widget to create 2 new windows for the app. I now hav
 ![](Screenshots/reviewphotosV1.png)
 
 > Time Spent ~ 2 hours
+
+## June 16th: Photo review works
+
+I got the photos to cycle through using PIL to load the images and a custom function to make the photos fit to screen. Lastly, I got the photo buttons to work and allow the user to go forwards and backwards through the photos. I also used the OS library to make sure that only photo images would load in the photo review window. 
+
+![](Screenshots/imagereview.png)
+
+> Time Spent ~ 1 hour
+
+## June 18th: Power Down window done
+
+I finished up the power down menu today. I made a simple background using a photo I found from NASA. I then added some text in canva and saved the photo as a png. Lastly, I updated the code to display the image and I think it looks pretty good   
+
+![](Screenshots/powerdown.png)
+
+> Time Spent ~ .5 hours

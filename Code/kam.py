@@ -97,7 +97,7 @@ def time_now():
     localTime.after(1500, time_now)
 
 #Power down camera
-def power_off(mode):
+def power_off():
     powerWindow = tk.Toplevel()
 
     powerWindow.title("power off")
@@ -106,14 +106,20 @@ def power_off(mode):
     powerWindow.rowconfigure((0,1),weight=1,uniform='a')
     centerWindows(powerWindow)
 
-    yesB=ttk.Button(powerWindow,text='Yes')
-    yesB.grid(column=0,row=1, sticky='sew')
+    #display screen background
+    load=Image.open('GUIimages/exitScreen.png')
+    photo1=fit_image(load, 320, 240)
+    background = ttk.Label(powerWindow,image=photo1)
+    background.image = photo1
+    background.grid(column=0,row=0, rowspan=2, columnspan=2, sticky='news')
+    
+    yesB=ttk.Button(powerWindow,text='Yes',command=lambda: root.destroy(), bootstyle='danger')
+    yesB.grid(column=0,row=1, sticky='sw')
     noB=ttk.Button(powerWindow,text='No', command=lambda: powerWindow.destroy())
-    noB.grid(column=1,row=1, sticky='sew')
+    noB.grid(column=1,row=1, sticky='se')
+
 
     #if powered off from screen it will display a popup message first then shutdown
-    if(mode=='screen'):
-        pass
             
 
     #if powered down from switch button it will complete a safe shutdown
@@ -188,7 +194,7 @@ def last_photo():
 #detects which photo the app is viewing
 imageCounter = 0
 
-# get photos from certain folder
+# get photos from certain folder change this to the folder you want
 imageFolder="C:/Users/Gabi/Documents/KrillKam/Krill-Kam-/Screenshots"
 photosPath = []
 def get_photos(folder):
@@ -272,7 +278,7 @@ settings=ttk.Button(buttonFrame, text='settings')
 camera_buttons.append(settings)
 
 #Power button
-powerOff= ttk.Button(root, text="Power", command=lambda:power_off('screen'))
+powerOff= ttk.Button(root, text="Power", command=lambda:power_off())
 powerOff.grid(column=0, row=2,sticky='ews')
 
 
@@ -283,7 +289,7 @@ for index, button in enumerate(camera_buttons):
 #krillCanvas.grid(column=0,row=1,sticky='nesw')
 
 #testing windows
-create_photo_window()
+#create_photo_window()
 #power_off()
 
 show_frame()

@@ -220,6 +220,33 @@ def centerWindows(window):
     window.bind('<Escape>',lambda event: root.destroy())
 centerWindows(root)
 
+#Settings menu
+def create_settings_window():
+    settingsWindow = tk.Toplevel()
+    settingsWindow.geometry('320x240')
+    settingsWindow.grid_columnconfigure((0,1),weight=1,uniform='a')
+    settingsWindow.rowconfigure((0,1,2,3),weight=1,uniform='a')
+    centerWindows(settingsWindow)
+
+    #tabs for rec/photo/general settings
+    tabs = ttk.Notebook(settingsWindow)
+    tabs.grid(column=0,row=1, columnspan=2, rowspan= 3,sticky='wnes')
+    photoMode= ttk.Frame(tabs)
+    recordMode = ttk.Frame(tabs)
+    generalMode=ttk.Frame(tabs)
+    tabs.add(generalMode, text= 'gen settings')
+    tabs.add(photoMode, text='photo settings')
+    tabs.add(recordMode, text='record settings')
+
+    #buttons
+    returnB = ttk.Button(settingsWindow,text='EXIT', command= lambda: settingsWindow.destroy())
+    returnB.grid(column=0,row=0,sticky='wn')
+    settingsWindow.rowconfigure((1,2,3),weight=2,uniform='a')
+
+    
+
+
+
 
 #set background
 blueBack=Image.open('GUIimages/blue-background.jpeg')
@@ -274,7 +301,7 @@ camera_buttons.append(record)
 reviewMode=ttk.Button(buttonFrame, text='Review', command=create_photo_window)
 camera_buttons.append(reviewMode)
 
-settings=ttk.Button(buttonFrame, text='settings')
+settings=ttk.Button(buttonFrame, text='settings',command=create_settings_window)
 camera_buttons.append(settings)
 
 #Power button

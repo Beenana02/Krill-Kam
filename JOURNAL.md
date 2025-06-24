@@ -10,7 +10,7 @@ created_at: "2025-05-16"
 Howdy wanna see the krill kam grow? 
 
 Check out the updates below! :eyes::shrimp: [^1]
-[^1]: I've spent 24 hours total on this project so far 😺
+[^1]: I've spent 26 hours total on this project so far 😺
 
 ## May 16th: Sketching
 Got in a rough idea of what I want the Camcorder to look like. It is based off the Sony Handy Cam that I have at home. 
@@ -135,3 +135,11 @@ I finished up the power down menu today. I made a simple background using a phot
 ![](Screenshots/powerdown.png)
 
 > Time Spent ~ .5 hours
+
+## June 23th: Re-CAD
+
+I was gone a bit for a vacation, but today I got the battery for the camera in the mail. It was way bigger than I had modeled for and I might have accidentally read the measurements on the product wrong. So today was re-working the cad to allow the battery to fit in the camera base. To get the battery to fit, I had to remove the usb storage compartment to make space for the battery. As of now I'm not sure what to remodel in order to get the usb flashdrive to fit. My plan is to just have it where the inner panel will be or in the old battery holder section 
+
+![](Screenshots/giantbattery.png)
+
+> Time Spent ~ 2 hours

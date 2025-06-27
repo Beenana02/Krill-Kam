@@ -10,7 +10,7 @@ created_at: "2025-05-16"
 Howdy wanna see the krill kam grow? 
 
 Check out the updates below! :eyes::shrimp: [^1]
-[^1]: I've spent 26 hours total on this project so far 😺
+[^1]: I've spent 27.5 hours total on this project so far 😺
 
 ## May 16th: Sketching
 Got in a rough idea of what I want the Camcorder to look like. It is based off the Sony Handy Cam that I have at home. 
@@ -143,3 +143,11 @@ I was gone a bit for a vacation, but today I got the battery for the camera in t
 ![](Screenshots/giantbattery.png)
 
 > Time Spent ~ 2 hours
+
+## June 26th: Re-CAD Arm and Joystick Slot
+
+Finally got some time this week to work more on the project. I just got in all my adafruit items and I noticed that the PCB for the joystick was a bit bigger than I expected. To fix that I updated my CAD to allow for the PCB to sit above the battery. Also for today I worked on redoing the arm mechanic. I thought the hinge I had now was always getting loose on my V2 print, so I remodeled the hinge to be a clip on design. Now the base has a rod where the arm will clip onto and then you can glue another piece onto the arm to make sure the arm stays in place. All updates are in the V3 folder and I'm currently 3D printing them now!
+
+![](Screenshots/NewHinge.png)
+
+> Time Spent ~ 1.5 hours
